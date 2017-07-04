@@ -1,6 +1,9 @@
 package com.daemitus.deadbolt.events;
 
 import com.daemitus.deadbolt.*;
+
+import com.palmergames.bukkit.towny.object.TownyUniverse;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,7 +24,7 @@ public class SignListener implements Listener {
 
     private enum Result {
 
-        DENY_SIGN_PRIVATE_ALREADY_OWNED, ADMIN_SIGN_PLACED, DENY_SIGN_MOREUSERS_ALREADY_OWNED, DENY_SIGN_PRIVATE_NOTHING_NEARBY, DENY_SIGN_MOREUSERS_NO_PRIVATE, SUCCESS, PLACEHOLDER, DENY_BLOCK_PERM;
+        DENY_SIGN_PRIVATE_ALREADY_OWNED, ADMIN_SIGN_PLACED, DENY_SIGN_MOREUSERS_ALREADY_OWNED, DENY_SIGN_PRIVATE_NOTHING_NEARBY, DENY_SIGN_MOREUSERS_NO_PRIVATE, SUCCESS, PLACEHOLDER, DENY_BLOCK_PERM, TOWNY_WILDERNESS;
     }
 
     @EventHandler(ignoreCancelled = true)
@@ -112,6 +115,9 @@ public class SignListener implements Listener {
             case DENY_BLOCK_PERM:
                 Deadbolt.getConfig().sendMessage(player, ChatColor.RED, Deadbolt.getLanguage().msg_deny_block_perm);
                 break;
+            case TOWNY_WILDERNESS:
+            	Deadbolt.getConfig().sendMessage(player, ChatColor.RED, Deadbolt.getLanguage().msg_deny_towny_wilderness);
+            	break;
             default:
                 //case DENY_SIGN_PRIVATE_NOTHING_NEARBY:
                 Deadbolt.getConfig().sendMessage(player, ChatColor.RED, Deadbolt.getLanguage().msg_deny_sign_private_nothing_nearby);
@@ -165,7 +171,12 @@ public class SignListener implements Listener {
                 boolean hopper = false;
                 boolean dropper = false;
                 boolean trappedChest = false;
+                
                 for (Block setBlock : db.getBlocks()) {
+                	//Towny Integration
+                	if (TownyUniverse.isWilderness(setBlock) && !player.hasPermission(Perm.admin_create))                 		
+                		return Result.TOWNY_WILDERNESS;                		
+                	
                     //not authorized to protect?
                     switch (setBlock.getType()) {
                         case CHEST:

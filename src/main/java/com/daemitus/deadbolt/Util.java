@@ -7,6 +7,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.TownyUniverse;
+
 public final class Util {
 
     protected static final String patternBracketTooLong = "\\[.{14,}\\]";
@@ -48,6 +51,35 @@ public final class Util {
             return true;
         }
 
+        return false;
+    }
+    
+    public static boolean signNameEqualsTownName(String signName, String playerName) {
+        
+        String townString = null;
+		try {
+			if (TownyUniverse.getDataSource().getResident(playerName).hasTown()) {
+				townString = "[" + TownyUniverse.getDataSource().getResident(playerName).getTown().getName() + "]";	
+			    if (signName.equalsIgnoreCase(townString))
+			    	return true;
+			}
+		} catch (NotRegisteredException e) {
+			return false;
+		}
+        return false;
+    }
+    
+    public static boolean signNameEqualsNationName(String signName, String playerName) {
+        String nationString = null;
+		try {
+			if (TownyUniverse.getDataSource().getResident(playerName).hasNation()) {
+				nationString = "[" + TownyUniverse.getDataSource().getResident(playerName).getTown().getNation().getName() + "]";	
+			    if (signName.equalsIgnoreCase(nationString))
+			    	return true;
+			}
+		} catch (NotRegisteredException e) {
+			return false;
+		}
         return false;
     }
 

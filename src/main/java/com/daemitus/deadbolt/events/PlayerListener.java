@@ -1,6 +1,8 @@
 package com.daemitus.deadbolt.events;
 
 import com.daemitus.deadbolt.*;
+import com.palmergames.bukkit.towny.object.TownyUniverse;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -129,6 +131,12 @@ public class PlayerListener implements Listener {
                 if (triggeredEvent.isCancelled()) {
                     return false;
                 }
+                
+                if (TownyUniverse.isWilderness(signBlock) && !player.hasPermission(Perm.admin_create)) {
+                	Deadbolt.getConfig().sendMessage(player, ChatColor.RED, Deadbolt.getLanguage().msg_deny_towny_wilderness);
+                	return false;
+                }
+                	
 
                 signBlock.setType(Material.WALL_SIGN, false);
                 Sign signState = (Sign) signBlock.getState();
@@ -222,6 +230,8 @@ public class PlayerListener implements Listener {
 
         if (db.isUser(player)) {
             db.toggleDoors(block);
+            if (block.getType().equals(Material.IRON_DOOR_BLOCK))
+            	event.setCancelled(true);
             return true;
         }
 

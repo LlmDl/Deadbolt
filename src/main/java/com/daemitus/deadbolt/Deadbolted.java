@@ -326,9 +326,12 @@ public class Deadbolted {
             return true;
         } else {
             for (String user : users) {
-                if (Util.signNameEqualsPlayerName(user, player.getName())) {
+                if (Util.signNameEqualsPlayerName(user, player.getName()))
                     return true;
-                }
+                if (Util.signNameEqualsTownName(user, player.getName()))
+                    return true;
+                if (Util.signNameEqualsNationName(user, player.getName()))
+                    return true;
             }
         }
         return false;
