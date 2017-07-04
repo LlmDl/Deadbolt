@@ -174,9 +174,10 @@ public class SignListener implements Listener {
                 
                 for (Block setBlock : db.getBlocks()) {
                 	//Towny Integration
-                	if (TownyUniverse.isWilderness(setBlock) && !player.hasPermission(Perm.admin_create))                 		
-                		return Result.TOWNY_WILDERNESS;                		
-                	
+                	if (Deadbolt.getConfig().using_towny)
+	                	if (TownyUniverse.isWilderness(setBlock) && !player.hasPermission(Perm.towny_wild_bypass))                 		
+	                		return Result.TOWNY_WILDERNESS;                		
+	                	
                     //not authorized to protect?
                     switch (setBlock.getType()) {
                         case CHEST:

@@ -328,10 +328,12 @@ public class Deadbolted {
             for (String user : users) {
                 if (Util.signNameEqualsPlayerName(user, player.getName()))
                     return true;
-                if (Util.signNameEqualsTownName(user, player.getName()))
-                    return true;
-                if (Util.signNameEqualsNationName(user, player.getName()))
-                    return true;
+                if (Deadbolt.getConfig().using_towny) {
+	                if (Util.signNameEqualsTownName(user, player.getName()))
+	                    return true;
+	                if (Util.signNameEqualsNationName(user, player.getName()))
+	                    return true;
+                }
             }
         }
         return false;

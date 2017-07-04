@@ -21,6 +21,8 @@ public class Config extends AnnotatedConfig {
     //------------------------------------------------------------------------//
     @ConfigComment("File to load for messages")
     public String language = "english.yml";
+    @ConfigComment("Enable towny support within the plugin")
+    public boolean using_towny = true;
     @ConfigComment("Protections will auto-expire if the player is offline for X days. 0 means never expire.")
     public int auto_expire_days = 0;
     @ConfigComment("Allows trapdoors to link with each other vertically")

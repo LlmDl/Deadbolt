@@ -85,6 +85,7 @@ permissions:
       deadbolt.admin.bypass: true
       deadbolt.admin.commands: true
       deadbolt.admin.snoop: true
+      deadbolt.towny.wild.bypass: true
   deadbolt.admin.create:
     description: Allows admin protection of all for other users
     default: op
@@ -122,4 +123,8 @@ permissions:
   deadbolt.broadcast.snoop:
     description: receives notifications of admin override container snoops
     default: op
+#------------------------------------------------------------------------------#
+  deadbolt.towny.wild.bypass:
+    description: Allows players to use lockette in the Towny Wilderness
+    default: op    
 #------------------------------------------------------------------------------#

@@ -26,4 +26,5 @@ public final class Perm {
     public static final String command_reload = "deadbolt.command.reload";
     public static final String admin_broadcast_break = "deadbolt.broadcast.break";
     public static final String broadcast_admin_container = "deadbolt.broadcast.snoop";
+    public static final String towny_wild_bypass = "deadbolt.towny.wild.bypass";
 }

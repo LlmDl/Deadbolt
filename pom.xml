@@ -5,7 +5,6 @@
 
     <groupId>com.daemitus</groupId>
     <artifactId>Deadbolt</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>Deadbolt</name>
@@ -72,4 +71,5 @@
             <version>0.10.8</version>
         </dependency>
     </dependencies>
+    <version>2.3</version>
 </project>

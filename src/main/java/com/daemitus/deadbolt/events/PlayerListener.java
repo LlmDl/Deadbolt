@@ -131,12 +131,11 @@ public class PlayerListener implements Listener {
                 if (triggeredEvent.isCancelled()) {
                     return false;
                 }
-                
-                if (TownyUniverse.isWilderness(signBlock) && !player.hasPermission(Perm.admin_create)) {
-                	Deadbolt.getConfig().sendMessage(player, ChatColor.RED, Deadbolt.getLanguage().msg_deny_towny_wilderness);
-                	return false;
-                }
-                	
+                if (Deadbolt.getConfig().using_towny)
+	                if (TownyUniverse.isWilderness(signBlock) && !player.hasPermission(Perm.towny_wild_bypass)) {
+	                	Deadbolt.getConfig().sendMessage(player, ChatColor.RED, Deadbolt.getLanguage().msg_deny_towny_wilderness);
+	                	return false;
+	                }                	
 
                 signBlock.setType(Material.WALL_SIGN, false);
                 Sign signState = (Sign) signBlock.getState();
