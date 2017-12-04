@@ -45,6 +45,8 @@ permissions:
       deadbolt.user.create.brewery: true
       deadbolt.user.create.cauldron: true
       deadbolt.user.create.enchant: true
+      deadbolt.user.create.hopper: true
+      deadbolt.user.create.dropper: true
   deadbolt.user.create.chest:
     description: Allows user protection of chests
     default: true
@@ -74,6 +76,12 @@ permissions:
     default: true
   deadbolt.user.create.enchant:
     description: Allows user protection of enchantment tables
+    default: true
+  deadbolt.user.create.dropper:
+    description: Allows user protection of droppers
+    default: true
+  deadbolt.user.create.hopper:
+    description: Allows user protection of hoppers
     default: true
 #------------------------------------------------------------------------------#
   deadbolt.admin.*:

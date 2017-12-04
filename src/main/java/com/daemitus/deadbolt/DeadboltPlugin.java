@@ -46,6 +46,7 @@ public class DeadboltPlugin extends JavaPlugin implements Listener {
 
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("deadbolt").setExecutor(new DeadboltCommandExecutor(this));
+        getLogger().info("DeadBolt " + this.getDescription().getVersion() + " by LlmDl Enabled.");
     }
 
     @Override
@@ -67,6 +68,12 @@ public class DeadboltPlugin extends JavaPlugin implements Listener {
         if (!langFile.exists()) {
             Deadbolt.getLogger().warning(langFile.getName() + " not found, copying default english.yml");
             langFile = new File(getDataFolder(), "english.yml");
+            Deadbolt.getLogger().info("Deadbolt " + this.getDescription().getVersion() + ":");
+        	Deadbolt.getLogger().info(" In addition to normal DeadBolt, players can be");
+        	Deadbolt.getLogger().info(" limited to locking things only inside of their");
+        	Deadbolt.getLogger().info(" towns, and players can use [townname] and");
+        	Deadbolt.getLogger().info(" [nationname] on signs to enable access to");
+        	Deadbolt.getLogger().info(" their locked blocks.");
         }
         languageStorage = new FileYamlStorage<Language>(langFile, Language.class, this);
         l = languageStorage.load();

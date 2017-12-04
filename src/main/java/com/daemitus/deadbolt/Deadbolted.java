@@ -85,6 +85,12 @@ public class Deadbolted {
             case CHEST:
                 searchChest(block, true, false);
                 break;
+            case HOPPER:
+            	searchSimpleBlock(block, false, false);
+            	break;
+            case DROPPER:
+            	searchSimpleBlock(block, false, false);
+            	break;
             default:
                 for (BlockFace bf : Deadbolt.getConfig().CARDINAL_FACES) {
                     Block adjacent = block.getRelative(bf);
